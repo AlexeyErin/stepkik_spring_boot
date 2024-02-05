@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - logicalFilePath: path-independent
+  - property:
+      name: now
+      value: now
+      dbms: postgresql
+      global: true
+  - include:
+      file: version-0/changelog-0.yaml
+      relativeToChangeLogFile: true

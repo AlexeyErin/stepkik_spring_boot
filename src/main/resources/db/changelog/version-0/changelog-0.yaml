@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - logicalFilePath: path-independent
+  - include:
+      file: /init.yaml
+      relativeToChangeLogFile: true
