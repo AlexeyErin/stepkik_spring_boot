@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - logicalFilePath: independent
+  - changeSet:
+      id: 1
+      author: erin-aa
+      preConditions:
+        - not:
+          - tableExists:
+              tableName: task
+        - onFail: MARK_RAN
+      changes:
+        - createTable:
+            tableName: task
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: date
+                  type: DATE
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: TEXT
