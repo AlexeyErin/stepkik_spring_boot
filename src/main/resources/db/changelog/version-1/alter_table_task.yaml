@@ -1,0 +1,46 @@
+databaseChangeLog:
+  - logicalFilePath: indpendent
+  - changeSet:
+      id: 3
+      author: erin-aa
+      preConditions:
+        - sqlCheck:
+            expectedResult: 0
+            sql: select count(*) from information_schema.columns where table_name = 'task' and table_schema = 'public' and column_name = 'done';
+      changes:
+        - addColumn:
+            tableName: task
+            columns:
+              - column:
+                  name: done
+                  type: BOOLEAN
+  - changeSet:
+      id: 4
+      author: erin-aa
+      preConditions:
+        - sqlCheck:
+            expectedResult: 0
+            sql: SELECT count(*) FROM pg_indexes WHERE tablename = 'task' and indexname = 'task_date_idx';
+      changes:
+        - createIndex:
+              columns:
+                - column:
+                    name: date
+              indexName: task_date_idx
+              schemaName: public
+              tableName: task
+  - changeSet:
+      id: 5
+      author: erin-aa
+      preConditions:
+        - sqlCheck:
+            expectedResult: 0
+            sql: SELECT count(*) FROM pg_indexes WHERE tablename = 'task' and indexname = 'task_done_idx';
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: done
+            indexName: task_done_idx
+            schemaName: public
+            tableName: task

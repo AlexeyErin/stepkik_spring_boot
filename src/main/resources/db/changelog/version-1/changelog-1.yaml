@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - logicalFilePath: independent
+  - include:
+      file: task_insert_data.yaml
+      relativeToChangeLogFile: true
+  - include:
+      file: alter_table_task.yaml
+      relativeToChangelogFile: true

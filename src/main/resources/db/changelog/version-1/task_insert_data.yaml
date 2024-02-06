@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - logicalFilePath: independent
+  - changeSet:
+      id: 2
+      author: erin-aa
+      preConditions:
+        - sqlCheck:
+            expectedResult: 0
+            sql: select count(*) from public.task where description = 'Приготовить оливье';
+      changes:
+        - insert:
+            tableName: task
+            columns:
+              - column:
+                  name: date
+                  value: '2020-12-31'
+              - column:
+                  name: description
+                  value: "Приготовить оливье"
