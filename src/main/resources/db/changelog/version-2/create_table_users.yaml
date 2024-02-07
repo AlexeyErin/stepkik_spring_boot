@@ -1,0 +1,46 @@
+databaseChangeLog:
+  - logicalFilePath: independent
+  - changeSet:
+      id: 6
+      author: erin-aa
+      preConditions:
+        - not:
+            - tableExists:
+                tableName: users
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: BIGSERIAL
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: loging
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: password
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 7
+      author: erin-aa
+      preConditions:
+        - sqlCheck:
+            expectedResult: 0
+            sql: SELECT count(*) FROM pg_indexes WHERE tablename = 'task' and indexname = 'task_date_idx';
+      changes:
+        - createIndex:
+            columns:
+              - column:
+                  name: login
+            indexName: users_login_idx
+            tableName: users
+            schemaName: public
+
+

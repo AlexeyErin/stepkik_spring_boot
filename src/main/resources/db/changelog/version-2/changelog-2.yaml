@@ -1,0 +1,5 @@
+databaseChangeLog:
+  - logicalFilePath: independent
+  - include:
+      file: create_table_users.yaml
+      relativeToChangelogFile: true
